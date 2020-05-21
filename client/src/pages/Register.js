@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Form, Button } from 'semantic-ui-react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
+import { AuthContext } from '../context/AuthContext';
+
 function Register(props) {
+    const context = useContext(AuthContext);
     const [ errors, setErrors ] = useState({});
     const [ values, setValues ] = useState({
         username: '', 
@@ -18,6 +21,7 @@ function Register(props) {
 
     const [ addUser, { loading} ] = useMutation(REGISTER_USER, {
         update(proxy, result){
+            context.login(result.data.register); // can also destructure data from result like { data: {register: userData}}
             props.history.push('/');
         },
         onError(err){

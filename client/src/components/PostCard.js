@@ -34,7 +34,7 @@ function PostCard(props){
                         <div className="extra content">
                             <div className="ui labeled button" onClick={likePosthandler}>
                                 <div className="ui teal button basic">
-                                    <i className="heart icon"></i> Like
+                                    <i className="heart icon"></i> 
                                 </div>
                                 <div className="ui basic teal left pointing label">
                                     {likeCount}
@@ -42,7 +42,7 @@ function PostCard(props){
                             </div>
                             <div className="ui labeled button" onClick={CommentOnPosthandler}>
                                 <div className="ui red button basic">
-                                    <i className="comments icon"></i> Comment
+                                    <i className="comments icon"></i> 
                                 </div>
                                 <div className="ui basic red left pointing label">
                                     {commentCount}
