@@ -85,5 +85,5 @@ const LOGIN_USER = gql`
     }
 `;
 
-export default Login
+export default Login;
  

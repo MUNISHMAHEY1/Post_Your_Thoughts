@@ -1,18 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
 import avatar from '../images/avatar.png';
 import moment from 'moment';
+import { AuthContext } from '../context/AuthContext';
+import LikeButton from '../components/LikeButton';
 
 function PostCard(props){
-    const { body, createdAt, id, username, likeCount, commentCount} = props.post;
+    const { body, createdAt, id, username, likeCount, commentCount, likes} = props.post;
+    const { user } = useContext(AuthContext);
 
-    const likePosthandler = () => {
-        console.log("Like post!")
-    }
-
-    const CommentOnPosthandler = () => {
-        console.log("Comment added!")
-    }
     return(
         <div>
             <div className="ui cards">
@@ -32,22 +28,26 @@ function PostCard(props){
                         </div>
                         </div>
                         <div className="extra content">
-                            <div className="ui labeled button" onClick={likePosthandler}>
-                                <div className="ui teal button basic">
-                                    <i className="heart icon"></i> 
+                            <LikeButton user= {{user}} post={{ id, likes, likeCount }}></LikeButton>
+                            <Link to={`/posts/${id}`}>
+                                <div className="ui labeled button">
+                                    <div className="ui purple button basic">
+                                        <i className="comments icon"></i> 
+                                    </div>
+                                    <div className="ui basic purple left pointing label">
+                                        {commentCount}
+                                    </div>
                                 </div>
-                                <div className="ui basic teal left pointing label">
-                                    {likeCount}
+                            </Link>
+                            { user && user.username === username && (
+                                <div className="ui red button" 
+                                    style={{float:"right"}} 
+                                    onClick={()=> console.log("delete post")}
+                                    >
+                                    <i className="trash icon" style={{margin:0}}></i> 
                                 </div>
-                            </div>
-                            <div className="ui labeled button" onClick={CommentOnPosthandler}>
-                                <div className="ui red button basic">
-                                    <i className="comments icon"></i> 
-                                </div>
-                                <div className="ui basic red left pointing label">
-                                    {commentCount}
-                                </div>
-                            </div>
+                                
+                            )}
                     </div>
                 </div>
             </div>
