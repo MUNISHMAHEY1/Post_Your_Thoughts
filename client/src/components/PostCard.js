@@ -4,6 +4,7 @@ import avatar from '../images/avatar.png';
 import moment from 'moment';
 import { AuthContext } from '../context/AuthContext';
 import LikeButton from '../components/LikeButton';
+import DeleteButton from './DeleteButton';
 
 function PostCard(props){
     const { body, createdAt, id, username, likeCount, commentCount, likes} = props.post;
@@ -28,11 +29,11 @@ function PostCard(props){
                         </div>
                         </div>
                         <div className="extra content">
-                            <LikeButton user= {{user}} post={{ id, likes, likeCount }}></LikeButton>
+                            <LikeButton  user={user} post={{ id, likes, likeCount }}></LikeButton>
                             <Link to={`/posts/${id}`}>
                                 <div className="ui labeled button">
                                     <div className="ui purple button basic">
-                                        <i className="comments icon"></i> 
+                                        <i className="comments icon"></i> Comment
                                     </div>
                                     <div className="ui basic purple left pointing label">
                                         {commentCount}
@@ -40,13 +41,7 @@ function PostCard(props){
                                 </div>
                             </Link>
                             { user && user.username === username && (
-                                <div className="ui red button" 
-                                    style={{float:"right"}} 
-                                    onClick={()=> console.log("delete post")}
-                                    >
-                                    <i className="trash icon" style={{margin:0}}></i> 
-                                </div>
-                                
+                                <DeleteButton postId={id}/>
                             )}
                     </div>
                 </div>

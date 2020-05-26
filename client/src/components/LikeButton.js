@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 
 function LikeButton({ user, post: { id, likeCount, likes} }) {
     const [liked, setLiked] = useState(false);
+    const [ errors, setErrors ] = useState('');
 
     useEffect(() => {
         if (user && likes.find((like) => like.username === user.username)) {
@@ -15,26 +16,27 @@ function LikeButton({ user, post: { id, likeCount, likes} }) {
     const [likePost] = useMutation(LIKE_POST_MUTATION, {
         variables: {postId: id},
         onError(err){
-            console.log(err.graphQLErrors[0].message);
+            setErrors("User not logged In. Login and try again");
         }
     });
 
     const likeButton = user ? (
         liked ? (
             <div className="ui teal button">
-                <i className="heart icon"></i> 
+                <i className="heart icon"></i>Like 
             </div>
         ) : (
             <div className="ui teal button basic">
-                <i className="heart icon"></i> 
+                <i className="heart icon"></i>Like 
             </div>
         )
     ) : (
         <Link to="/login">
             <div className="ui teal button basic">
-                <i className="heart icon"></i> 
+                <i className="heart icon"></i>Like 
             </div>
         </Link>
+
     );
     
     return (
@@ -45,6 +47,13 @@ function LikeButton({ user, post: { id, likeCount, likes} }) {
                     {likeCount}
                 </div>
             </div>
+            { errors && (
+            <div className="ui error message" style={{marginBottom:"1.5rem"}}>
+                    <ul className="list">
+                        <li>{errors}</li>
+                    </ul>
+            </div>
+        )}
         </>
     )
 }
@@ -60,4 +69,4 @@ const LIKE_POST_MUTATION = gql`
         }
     }
 `;
-export default LikeButton
+export default LikeButton;
