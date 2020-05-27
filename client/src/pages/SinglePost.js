@@ -7,7 +7,8 @@ import { AuthContext } from '../context/AuthContext';
 import LikeButton from '../components/LikeButton';
 import DeleteButton from '../components/DeleteButton';
 import { Form } from 'semantic-ui-react';
-
+import { Link } from 'react-router-dom';
+ 
 function SinglePost(props){
     const postId = props.match.params.postId; // get postId from url 
     const { user } = useContext(AuthContext);
@@ -53,12 +54,16 @@ function SinglePost(props){
         postMarkup = (
             <div className="ui grid">
                 <div className="row">
-                    <div className="three wide column">
+                    <div className="three wide column" 
+                        data-tooltip={user.username} 
+                        data-position="top right" 
+                        data-inverted=""
+                        >
                         <img className="right floated mini ui image" 
                             src={avatar} 
                             alt="avatar" 
                             float="right"
-                            style={{width:"12rem"}}
+                            style={{width:"12rem"}} 
                             />
                     </div>
                     <div className="twelve wide column" width={10}>
@@ -77,15 +82,31 @@ function SinglePost(props){
                                     <hr/>
                                     <div className="extra content">
                                         <LikeButton user={user} post={{ id, likeCount, likes }} />
-
-                                        <div className="ui labeled button" data-tooltip="Add a Comment Below" data-inverted="" onClick={() => console.log("Comment added")}>
-                                            <div className="ui blue button basic">
-                                                <i className="comments icon"></i> Comment
+                                        { !user ? (
+                                           <Link to="/login">
+                                            <div className="ui labeled button" 
+                                                data-tooltip="Add a Comment Below" 
+                                                data-inverted="">
+                                                <div className="ui blue button basic">
+                                                    <i className="comments icon"></i>
+                                                </div>
+                                                <div className="ui basic blue left pointing label">
+                                                    {commentCount}
+                                                </div>
                                             </div>
-                                            <div className="ui basic blue left pointing label">
-                                                {commentCount}
-                                            </div>
-                                        </div>
+                                        </Link> 
+                                        ) : (
+                                            <div className="ui labeled button" 
+                                            data-tooltip="Add a Comment Below" 
+                                            data-inverted="">
+                                                <div className="ui blue button basic">
+                                                    <i className="comments icon"></i>
+                                                </div>
+                                                <div className="ui basic blue left pointing label">
+                                                    {commentCount}
+                                                </div>
+                                            </div> 
+                                        )}
                                         {user && user.username === username && (
                                             <DeleteButton postId={id} callback={deletePostCallback}/>
                                         )}
