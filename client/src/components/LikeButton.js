@@ -22,18 +22,18 @@ function LikeButton({ user, post: { id, likeCount, likes} }) {
 
     const likeButton = user ? (
         liked ? (
-            <div className="ui teal button">
-                <i className="heart icon"></i>Like 
+            <div className="ui teal button"  data-tooltip="Unlike Post" data-inverted="">
+                <i className="heart icon"></i> 
             </div>
         ) : (
-            <div className="ui teal button basic">
-                <i className="heart icon"></i>Like 
+            <div className="ui teal button basic" data-tooltip="Like Post" data-inverted="">
+                <i className="heart icon"></i> 
             </div>
         )
     ) : (
         <Link to="/login">
-            <div className="ui teal button basic">
-                <i className="heart icon"></i>Like 
+            <div className="ui teal button basic" data-tooltip="Like Post" data-inverted="">
+                <i className="heart icon"></i> 
             </div>
         </Link>
 

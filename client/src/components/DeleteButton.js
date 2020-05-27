@@ -31,6 +31,8 @@ const DeleteButton = ({ postId, commentId, callback }) => {
             <div className="ui red button" 
                 style={{float:"right"}} 
                 onClick={()=> setConfirmOpen(true)}
+                data-tooltip={ commentId ? "Delete Comment": "Delete Post"} 
+                data-inverted=""
                 >
             <i className="trash icon" style={{margin:0}}></i> 
             </div>

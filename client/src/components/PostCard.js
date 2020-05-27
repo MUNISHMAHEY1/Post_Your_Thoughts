@@ -9,7 +9,7 @@ import DeleteButton from './DeleteButton';
 function PostCard(props){
     const { body, createdAt, id, username, likeCount, commentCount, likes} = props.post;
     const { user } = useContext(AuthContext);
-
+    
     return(
         <div>
             <div className="ui cards">
@@ -19,7 +19,8 @@ function PostCard(props){
                         <div className="header">
                             {username}
                         </div>
-                        <div className="meta" >
+                        <hr></hr>
+                        <div className="meta" data-tooltip="Open the Post" data-position="top left" data-inverted="">
                             <Link to={`/posts/${id}`}>
                                 {moment(createdAt).fromNow(true)}
                             </Link>
@@ -31,9 +32,9 @@ function PostCard(props){
                         <div className="extra content">
                             <LikeButton  user={user} post={{ id, likes, likeCount }}></LikeButton>
                             <Link to={`/posts/${id}`}>
-                                <div className="ui labeled button">
+                                <div className="ui labeled button" data-tooltip="Add a Comment" data-inverted="">
                                     <div className="ui purple button basic">
-                                        <i className="comments icon"></i> Comment
+                                        <i className="comments icon"></i>
                                     </div>
                                     <div className="ui basic purple left pointing label">
                                         {commentCount}

@@ -78,7 +78,7 @@ function SinglePost(props){
                                     <div className="extra content">
                                         <LikeButton user={user} post={{ id, likeCount, likes }} />
 
-                                        <div className="ui labeled button" onClick={() => console.log("Comment added")}>
+                                        <div className="ui labeled button" data-tooltip="Add a Comment Below" data-inverted="" onClick={() => console.log("Comment added")}>
                                             <div className="ui blue button basic">
                                                 <i className="comments icon"></i> Comment
                                             </div>
