@@ -16,7 +16,7 @@ function PostForm() {
     }
 
     const [createPost, { loading }] = useMutation(CREATE_POST_MUTATION, {
-        
+        variables: values,
         update(proxy, result) {
             const data = proxy.readQuery({
               query: FETCH_POSTS_QUERY
@@ -25,7 +25,6 @@ function PostForm() {
             proxy.writeQuery({ query: FETCH_POSTS_QUERY, data });
             values.body = '';
         },
-        variables: values,
         onError(err) {
             setErrors(err.graphQLErrors[0].message);
         }
