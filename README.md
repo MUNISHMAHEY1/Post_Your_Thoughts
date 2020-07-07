@@ -9,9 +9,12 @@ Desktop View               |  Mobile View
 :-------------------------:|:-------------------------:
 ![desktop view](https://user-images.githubusercontent.com/47336885/86682514-a7f15280-bfce-11ea-8d20-26e9fa5f4b1c.png)  |  ![81973](https://user-images.githubusercontent.com/47336885/86684771-da9c4a80-bfd0-11ea-9cbe-b5c292ffde6e.jpg)
 
-## Technology used
-JavaScript, React, React Hooks, Express.js, Node.js, GraphQL, MongoDB, Material UI, HTML5, CSS3, Bootstrap, Git
- - Item 1
- - Item 2
-  - Sub Item 1
-  - Sub Item 2
+## Technology Used
+### **_JavaScript, React, React Hooks, Express.js, Node.js, GraphQL, MongoDB, Material UI, HTML5, CSS3, Bootstrap, Git_**
+- **_JavaScript_** as the base developement language.
+- Server was built using **_Apollo, Nodejs and Express_**.
+- Database was set using **_[MongoDB](https://www.mongodb.com/ "Learn more about MongoDB")_**.
+- **_[GraphQL](https://graphql.org/ "Learn more about GraphQL")_** used for querying and mutation of database.
+- **_[Bcrypt.js library](https://www.npmjs.com/package/bcrypt "Learn more about Bcrypt")_** used for hashing the password to secure it.
+- **_[JsonWebToken](https://www.npmjs.com/package/jsonwebtoken "Learn more about JSON WEB TOKEN")_** used for generating token and store it in localStorage.
+- **_[React Hooks](https://reactjs.org/docs/hooks-intro.html "Learn about React Hooks")_** used in the front-end to avoid using stateful components.
